@@ -14,3 +14,6 @@ php bin/magento setup:install \
 --currency=USD \
 --timezone=America/Chicago \
 --use-rewrites=1
+
+
+php bin/magento module:disable {Magento_Elasticsearch,Magento_InventoryElasticsearch,Magento_Elasticsearch6,Magento_Elasticsearch7}
