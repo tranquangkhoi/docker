@@ -1,0 +1,55 @@
+services:
+  memcached:
+    image: "memcached:latest"
+    container_name: c-memcached01
+    restart: always
+    hostname: memcached
+    networks:
+      - my-network
+    command:
+      - "--conn-limit=2048"
+      - "--memory-limit=2048"
+
+  php:
+    build:
+        context: ..\php\7.4
+    container_name: php-product
+    hostname: php01
+    restart: always
+    networks:
+      - my-network
+    volumes:
+        - .\:/var/www/html/magento
+
+  apache:
+    build:
+          context: ..\apache\2.4
+    container_name: c-httpd01
+    restart: always
+    hostname: httpd01
+    networks:
+      - my-network
+    ports:
+      - "8080:80"
+      - "443:443"
+
+    volumes:
+      - .\:/var/www/html/magento 
+
+  mysql:
+    image: "mysql:latest"
+    container_name: mysql-product
+    restart: always
+    hostname: mysql01
+    networks:
+      - my-network
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+    expose:
+      - "3306"
+    ports:
+      - "3307:3306"
+
+networks:
+  my-network:
+    driver: bridge
