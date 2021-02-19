@@ -17,3 +17,9 @@ php bin/magento setup:install \
 
 
 php bin/magento module:disable {Magento_Elasticsearch,Magento_InventoryElasticsearch,Magento_Elasticsearch6,Magento_Elasticsearch7}
+
+chmod -R 777 var
+
+php bin/magento setup:di:compile
+
+php bin/magento cache:clean
