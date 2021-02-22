@@ -50,6 +50,31 @@ services:
     ports:
       - "3307:3306"
 
+  elasticsearch:
+    image: elasticsearch:7.2.0
+    container_name: elasticsearch7
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    volumes:
+      - ..\elasticsearch-data:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    networks:
+      - my-network
+
+  kibana:
+    image: kibana:7.2.0
+    container_name: kibana720
+    ports:
+      - 5601:5601
+    networks:
+      - my-network
+
 networks:
   my-network:
     driver: bridge
