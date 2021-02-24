@@ -1,6 +1,6 @@
 # Install magento
 php bin/magento setup:install \
---base-url=http://localhost:8080 \
+--base-url=http://dev-magento.com:8080 \
 --db-host=mysql \
 --db-name=magento \
 --db-user=root \
