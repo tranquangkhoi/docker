@@ -1,6 +1,6 @@
 # Install magento
 php bin/magento setup:install \
---base-url=http://dev-magento.com:8080 \
+--base-url=http://dev-magento.com \
 --db-host=mysql \
 --db-name=magento \
 --db-user=root \
@@ -12,7 +12,7 @@ php bin/magento setup:install \
 --admin-password=admin123 \
 --language=en_US \
 --currency=USD \
---timezone=America/Chicago \
+--timezone=Asia/Tokyo \
 --use-rewrites=1 \
 --search-engine=elasticsearch7  \
 --elasticsearch-host=elasticsearch7  \
