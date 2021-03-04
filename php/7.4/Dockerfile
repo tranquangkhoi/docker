@@ -37,6 +37,8 @@ RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 ADD ./php.ini /usr/local/etc/php/php.ini
 
+ADD ./docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 ADD ./composer/1.10.20/composer.phar /usr/local/bin/composer
 
 CMD ["php-fpm"]
