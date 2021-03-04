@@ -20,6 +20,15 @@ RUN docker-php-ext-configure intl \
 
 RUN docker-php-ext-install -j$(nproc) opcache bcmath pdo_mysql soap xsl zip sockets
 
+# install xdebug
+RUN set -xe && \
+        docker-php-source extract && \
+        pecl install -f xdebug-2.9.8 && \
+        docker-php-ext-enable xdebug && \
+        docker-php-source delete && \
+        php -v && \
+        php -m
+
 # Create user magento
 RUN useradd -m -s /bin/bash magento \
     && usermod -a -G www-data magento
